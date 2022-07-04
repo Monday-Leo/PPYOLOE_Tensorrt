@@ -17,12 +17,12 @@
 
 ## Benchmark
 
-|   Model   | Size | mAP<sup>val</sup> 0.5:0.95 | GTX1650 FP16(ms) | ONNX (EfficientNMS) |
-| :-------: | :--: | :------------------------: | :--------------: | :-----------------: |
-| PPYOLOE-S | 640  |            43.4            |        13        |        model        |
-| PPYOLOE-M | 640  |            49.0            |        20        |        model        |
-| PPYOLOE-L | 640  |            51.4            |        30        |        model        |
-| PPYOLOE-X | 640  |            52.3            |        52        |        model        |
+|   Model   | Size | mAP<sup>val</sup> 0.5:0.95 | GTX1650 FP16(ms) |                     ONNX (EfficientNMS)                      |
+| :-------: | :--: | :------------------------: | :--------------: | :----------------------------------------------------------: |
+| PPYOLOE-S | 640  |            43.0            |        13        | [model](https://github.com/Monday-Leo/PPYOLOE_Tensorrt/releases/download/v1.0/ppyoloes_nms.onnx) |
+| PPYOLOE-M | 640  |            49.0            |        20        | [model](https://github.com/Monday-Leo/PPYOLOE_Tensorrt/releases/download/v1.0/ppyoloem_nms.onnx) |
+| PPYOLOE-L | 640  |            51.4            |        30        | [model](https://github.com/Monday-Leo/PPYOLOE_Tensorrt/releases/download/v1.0/ppyoloel_nms.onnx) |
+| PPYOLOE-X | 640  |            52.3            |        52        | [model](https://github.com/Monday-Leo/PPYOLOE_Tensorrt/releases/download/v1.0/ppyoloex_nms.onnx) |
 
 说明：此处FP16预测时间包含**preprocess+inference+nms**，与官方测速不同；mAP<sup>val</sup>为原始Paddle模型精度，转换后精度未测试。
 
