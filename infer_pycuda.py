@@ -8,8 +8,6 @@ import time
 class BaseEngine(object):
     def __init__(self, engine_path, imgsz=(640,640)):
         self.imgsz = imgsz
-        self.n_classes = 80
-
         logger = trt.Logger(trt.Logger.WARNING)
         runtime = trt.Runtime(logger)
         trt.init_libnvinfer_plugins(logger, namespace="")
@@ -31,9 +29,7 @@ class BaseEngine(object):
                 self.outputs.append({'host': host_mem, 'device': device_mem})        
 
     def predict(self, img,threshold):
-        t1 = time.time()
         self.img = self.preprocess(img)
-        t2 = time.time()
         self.inputs[0]['host'] = np.ravel(self.img)
         # transfer data to the gpu
         for inp in self.inputs:
@@ -50,8 +46,6 @@ class BaseEngine(object):
 
         data = [out['host'] for out in self.outputs]
         results = self.postprocess(data,threshold)
-        t3 = time.time()
-        print(round((t2-t1)*1000),"ms",round((t3-t2)*1000),"ms")
         return results
 
     def letterbox(self,im,color=(114, 114, 114), auto=False, scaleup=True, stride=32):
@@ -121,8 +115,6 @@ def visualize(img,bbox_array):
 Predictor = BaseEngine("./trt_model/ppyoloex_nms_fp16.engine")
 img1 = cv2.imread("./pictures/bus.jpg")
 results = Predictor.predict(img1,threshold=0.5)
-for i in range(10):
-    results = Predictor.predict(img1,threshold=0.5)
 img = visualize(img1,results)
 cv2.imshow("img",img)
 cv2.waitKey(0)

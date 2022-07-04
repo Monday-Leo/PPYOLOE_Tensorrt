@@ -7,12 +7,12 @@ from collections import OrderedDict
 
 #注意修改
 ########################################################
-INPUT_PATH = './onnx_model/ppyoloe_crn_x_300e_coco.onnx'
-WEIGHTS_TYPE = "x"
-SAVE_PATH = "./onnx_model/ppyoloex_nms.onnx"
+INPUT_PATH = './onnx_model/ppyoloe_crn_s_300e_coco.onnx'
+WEIGHTS_TYPE = "s"
+SAVE_PATH = "./onnx_model/ppyoloes_nms.onnx"
 CLASS_NUM = 80
-SCORE_THRESHOLD = 0.5
-IOU_THRESHOLD = 0.4
+SCORE_THRESHOLD = 0.25
+IOU_THRESHOLD = 0.45
 ########################################################
 
 if(WEIGHTS_TYPE=="s"):

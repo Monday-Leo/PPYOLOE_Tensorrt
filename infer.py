@@ -72,9 +72,7 @@ class TRT_engine():
         return self.img
 
     def predict(self,img,threshold):
-        t1 = time.time()
         img = self.preprocess(img)
-        t2 = time.time()
         self.binding_addrs['image'] = int(img.data_ptr())
         self.context.execute_v2(list(self.binding_addrs.values()))
         nums = self.bindings['num_dets'].data[0].tolist()
@@ -91,8 +89,6 @@ class TRT_engine():
             xmax = (boxes[i][2] - self.dw)/self.r
             ymax = (boxes[i][3] - self.dh)/self.r
             new_bboxes.append([classes[i],scores[i],xmin,ymin,xmax,ymax])
-        t3 = time.time()
-        print(round((t2-t1)*1000),"ms",round((t3-t2)*1000),"ms")
         return new_bboxes
 
 def visualize(img,bbox_array):
@@ -109,8 +105,7 @@ def visualize(img,bbox_array):
 
 trt_engine = TRT_engine("./trt_model/ppyoloes_nms_fp16.engine")
 img1 = cv2.imread("./pictures/zidane.jpg")
-for i in range(30):
-    results = trt_engine.predict(img1,threshold=0.5)
+results = trt_engine.predict(img1,threshold=0.5)
 img = visualize(img1,results)
 cv2.imshow("img",img)
 cv2.waitKey(0)
