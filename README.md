@@ -1,3 +1,7 @@
+## B站视频教程
+
+https://www.bilibili.com/video/BV12a411H73Q/
+
 ## Introduction
 
 **PPYOLOE**是百度提出的单阶段**Anchor-free**模型，超越了多种**YOLO**模型，本仓库实现**PPYOLOE端到端的Tensorrt部署**。
